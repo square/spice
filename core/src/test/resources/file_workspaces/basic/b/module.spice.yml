@@ -1,0 +1,9 @@
+---
+name: b
+variants:
+  debug:
+    deps:
+      - /a
+  release:
+    deps:
+      - /a

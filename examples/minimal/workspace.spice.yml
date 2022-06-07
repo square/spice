@@ -1,0 +1,27 @@
+---
+name: "minimal"
+
+definitions:
+  tools: ["java"]
+  variants:
+    - main:
+        srcs: ["src/main"]
+        tests:
+          - unit:
+            srcs: ["src/test"]
+            deps:
+              - "maven://junit"
+
+tools:
+  - name: java
+
+external:
+  - name: maven
+    type: maven
+    repositories:
+      - id: central
+        url: http://repo1.maven.org
+    artifacts:
+      junit:junit:4.13:
+      # ... add more here.
+

@@ -1,0 +1,24 @@
+load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
+
+kt_jvm_library(
+    name = "model",
+    srcs = glob(
+        ["src/main/**/*.kt"],
+        exclude = ["src/main/**/test/*.kt"],
+    ),
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@maven//com/fasterxml/jackson/core:jackson-annotations",
+    ],
+)
+
+kt_jvm_library(
+    name = "test",
+    testonly = True,
+    srcs = glob(["src/main/**/test/*.kt"]),
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//model",
+        "@maven//com/fasterxml/jackson/core:jackson-annotations",
+    ],
+)

@@ -1,0 +1,33 @@
+---
+# Spice - a metadata system for source code
+# For illustration - may not be correct (yet) until we dogfood
+name: "spice"
+
+definitions:
+  namespace: "com.squareup.spice"
+
+  tools: ["kotlin"]
+  variants:
+    main:
+      srcs: ["src/main"]
+      tests:
+        unit:
+          srcs: ["src/test"]
+          deps:
+            - "maven://com.google.truth"
+            - "maven://junit"
+
+declared_tools: # Tools declared and available to projects in the workspace
+  - name: kotlin
+
+external:
+  - name: maven
+    type: maven
+    properties:
+      repositories:
+        - central:http://repo1.maven.org
+    artifacts:
+      com.google.truth:truth:1.0:
+      junit:junit:4.13:
+
+

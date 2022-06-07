@@ -1,0 +1,6 @@
+---
+variants:
+  main:
+    deps:
+      - /a
+

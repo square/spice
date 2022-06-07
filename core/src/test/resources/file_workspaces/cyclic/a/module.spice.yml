@@ -1,0 +1,5 @@
+---
+variants:
+  main:
+    deps:
+      - /b

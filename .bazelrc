@@ -1,0 +1,28 @@
+# Constrain environment within actions, in order to avoid environment pollution
+# which can restrict cache hits.
+build --incompatible_strict_action_env=true
+
+
+# Kochiku specific settings
+build:kochiku --notrack_incremental_state
+build:kochiku --discard_analysis_cache
+build:kochiku --nokeep_state_after_build
+build:kochiku --experimental_repository_cache_hardlinks
+build:kochiku --local_ram_resources=HOST_RAM*.4
+build:kochiku --disk_cache=/mnt/nfs/shared-cache/RF-1462-bazel-builds-research-spike/
+build:kochiku --sandbox_debug
+build:kochiku --output_filter=UNMATCHABLE_REGEXP
+build:kochiku --fat_apk_cpu=x86_64
+build:kochiku --verbose_failures
+build:kochiku --build_event_json_file=bazel.ci.bep.json
+build:kochiku --announce_rc
+build:kochiku --keep_going
+build:kochiku --jobs=HOST_CPUS*.6
+test:kochiku --test_timeout=180,450,1350,4800
+test:kochiku --test_output=errors
+
+# This will permissively try to load a file "user.bazelrc" from the project workspace
+# if it exists, in case of per-user+per-project flags.  Needing this should be rare,
+# but is a good place to put things you want active for you, but not globally for all
+# bazel projects.
+try-import %workspace%/user.bazelrc

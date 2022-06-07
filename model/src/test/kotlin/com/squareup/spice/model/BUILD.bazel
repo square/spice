@@ -1,0 +1,37 @@
+load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
+load("//tools:junit5.bzl", "kt_jvm_test")
+
+kt_jvm_test(
+    name = "FakeWorkspaceTest",
+    srcs = ["FakeWorkspaceTest.kt"],
+    friends = ["//model"],
+    test_class = "com.squareup.spice.model.FakeWorkspaceTest",
+    deps = [
+        "//model:test",
+        "@maven//com/google/truth",
+        "@maven//org/junit/jupiter:junit-jupiter-api",
+    ],
+)
+
+kt_jvm_test(
+    name = "MergeTest",
+    srcs = ["MergeTest.kt"],
+    friends = ["//model"],
+    test_class = "com.squareup.spice.model.MergeTest",
+    deps = [
+        "@maven//com/google/truth",
+        "@maven//org/junit/jupiter:junit-jupiter-api",
+    ],
+)
+
+kt_jvm_test(
+    name = "TestNodeUnitTest",
+    srcs = ["TestNodeUnitTest.kt"],
+    friends = ["//model"],
+    test_class = "com.squareup.spice.model.TestNodeUnitTest",
+    deps = [
+        "//model:test",
+        "@maven//com/google/truth",
+        "@maven//org/junit/jupiter:junit-jupiter-api",
+    ],
+)

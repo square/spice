@@ -1,0 +1,38 @@
+load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
+load("//tools:junit5.bzl", "kt_jvm_test")
+
+kt_jvm_test(
+    name = "DependencyCycleValidatorTest",
+    srcs = ["DependencyCycleValidatorTest.kt"],
+    friends = ["//model"],
+    test_class = "com.squareup.spice.model.validation.DependencyCycleValidatorTest",
+    deps = [
+        "//model:test",
+        "@maven//com/google/truth",
+        "@maven//org/junit/jupiter:junit-jupiter-api",
+    ],
+)
+
+kt_jvm_test(
+    name = "GraphCompletenessValidatorTest",
+    srcs = ["GraphCompletenessValidatorTest.kt"],
+    friends = ["//model"],
+    test_class = "com.squareup.spice.model.validation.GraphCompletenessValidatorTest",
+    deps = [
+        "//model:test",
+        "@maven//com/google/truth",
+        "@maven//org/junit/jupiter:junit-jupiter-api",
+    ],
+)
+
+kt_jvm_test(
+    name = "TestLeafValidatorTest",
+    srcs = ["TestLeafValidatorTest.kt"],
+    friends = ["//model"],
+    test_class = "com.squareup.spice.model.validation.TestLeafValidatorTest",
+    deps = [
+        "//model:test",
+        "@maven//com/google/truth",
+        "@maven//org/junit/jupiter:junit-jupiter-api",
+    ],
+)

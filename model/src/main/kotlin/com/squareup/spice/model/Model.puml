@@ -1,0 +1,66 @@
+@startuml
+
+package c.s.spice.model {
+
+  interface Slice {
+    + variant: String
+  }
+
+  interface Workspace
+
+  together {
+    interface Node {
+      + address: String
+    }
+
+    interface InternalNode
+
+    class ExternalNode {
+    }
+  }
+
+  class ModuleNode {
+    + val module: ModuleDocument
+    + val path: List<String>
+  }
+
+  class TestNode {
+    + val config: TestConfiguration
+    + val variant: String
+  }
+
+  class VariantConfiguration {
+    + val srcs: List<String>
+    + val tools: List<String>
+    + val deps: List<Dependency>
+  }
+
+  class TestConfiguration {
+    + val srcs: List<String>
+    + val tools: List<String>
+    + val deps: List<Dependency>
+  }
+
+  class Dependency {
+    + val target: String
+    + val tags: List<String>
+  }
+
+  Node <|-right- ExternalNode
+  Node <|-- InternalNode
+  InternalNode <|-- ModuleNode
+  InternalNode <|-- TestNode
+
+  ModuleNode "1" *-- "*" VariantConfiguration
+  VariantConfiguration "1" *-right- "*" TestNode
+  TestNode "1" *-right- "1" TestConfiguration
+  VariantConfiguration "1" o-- "*" Dependency
+  TestConfiguration "1" o-- "*" Dependency
+
+  Workspace "1" --* Slice
+  Slice "1" *-- InternalNode
+  Workspace "1"  --* ExternalNode
+
+}
+
+@enduml

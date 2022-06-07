@@ -1,0 +1,6 @@
+---
+name: a
+variants:
+  main:
+    deps:
+      - /q

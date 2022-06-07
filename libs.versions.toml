@@ -1,0 +1,31 @@
+[versions]
+jackson = "2.12.4"
+okhttp = "4.5.0"
+okio = "2.4.1"
+retrofit = "2.7.2"
+wire = "3.0.0"
+xenomachina = "2.0.7"
+kotlinx = "1.5.1"
+snakeyaml = "1.26"
+junit = "5.8.2"
+junit-gradle = "1.2.0"
+truth = "1.0"
+
+
+[libraries]
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version.ref = "jackson" }
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-wire = { module = "com.squareup.retrofit2:converter-wire", version.ref = "retrofit" }
+snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
+wire-runtime = { module = "com.squareup.wire:wire-runtime", version.ref = "wire" }
+xenomachina-argparser = { module = "com.xenomachina:kotlin-argparser", version.ref = "xenomachina" }
+junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+junit-gradle = { module = "org.junit.platform:junit-platform-gradle-plugin", version.ref = "junit-gradle" }
+google-truth = { module = "com.google.truth:truth", version.ref = "truth" }

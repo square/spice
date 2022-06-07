@@ -1,3 +1,10 @@
+gradlew.*
+gradle/
+.idea/
+.aswb/
+.ijwb/
+bazel-*
+build/
 # Compiled class file
 *.class
 

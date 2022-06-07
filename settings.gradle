@@ -1,0 +1,60 @@
+pluginManagement {
+  // includeBuild '../../build-logic/build-logic-plugin'
+  def mavenRepoUrl = hasProperty('mavenRepoUrl')
+      ? getProperty('mavenRepoUrl') : "https://maven.global.square"
+  repositories {
+    maven {
+      url mavenRepoUrl + '/artifactory/square-public'
+    }
+    mavenLocal()
+  }
+}
+
+enableFeaturePreview('VERSION_CATALOGS')
+
+def allowMavenLocal = providers.systemProperty('allow-maven-local').orElse('false')
+    .forUseAtConfigurationTime()
+def allowSnapshots = providers.systemProperty('allow-snapshots').orElse('false')
+    .forUseAtConfigurationTime()
+
+dependencyResolutionManagement {
+  versionCatalogs {
+    libs {
+      from(files("libs.versions.toml"))
+    }
+  }
+  repositories {
+    if (allowMavenLocal.get()) {
+      mavenLocal()
+    }
+    maven {
+      url "$mavenRepoUrl/artifactory/square-public"
+    }
+    if (allowSnapshots.get()) {
+      maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+      }
+      maven {
+        url "https://s01.oss.sonatype.org/content/repositories/snapshots"
+      }
+      maven {
+        url "$mavenRepoUrl/artifactory/snapshots"
+      }
+    }
+  }
+}
+
+//includeBuild('../../build-logic/conventions') { build ->
+//  println(build.name)
+//  build.dependencySubstitution {
+//    substitute(module('com.squareup.register.conventions:rustler')).using(project(':rustler'))
+//    substitute(module('com.squareup.register.conventions:id')).using(project(':id'))
+//    substitute(module('com.squareup.register.conventions:utilities-testing')).using(project(':utilities-testing'))
+//  }
+//}
+
+rootProject.name = 'spice'
+include ':model'
+include ':core'
+
+

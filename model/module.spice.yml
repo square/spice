@@ -1,0 +1,8 @@
+# For illustration - may not be correct (yet) until we dogfood
+name: model
+tools: [ kotlin ]
+variants:
+  main:
+    deps:
+      - maven://com.fasterxml.jackson.core:jackson-annotations
+

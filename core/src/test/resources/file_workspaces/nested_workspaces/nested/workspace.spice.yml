@@ -1,0 +1,13 @@
+---
+name: "nested"
+
+definitions:
+  namespace: "spice.test.example.nested_workspaces.nested"
+  tools: ["kotlin"]
+  variants:
+    foo:
+      srcs: ["src/main", "src/debug"]
+
+declared_tools: # Tools declared and available to projects in the workspace
+  - name: kotlin
+

@@ -1,0 +1,7 @@
+filegroup(
+    name = "file_workspaces",
+    srcs = glob(["file_workspaces/**"]),
+    visibility = [
+        "//visibility:public",
+    ],
+)

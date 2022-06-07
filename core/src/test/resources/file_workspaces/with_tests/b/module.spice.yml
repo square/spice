@@ -1,0 +1,14 @@
+---
+name: b
+variants:
+  debug:
+    deps:
+      - /a
+    tests:
+      unit:
+        deps:
+          - /a
+          - /b
+  release:
+    deps:
+      - /a

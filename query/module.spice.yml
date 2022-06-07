@@ -1,0 +1,12 @@
+name: query
+tools: [ kotlin ]
+variants:
+  main:
+    deps:
+      - /model
+      - /core
+    tests:
+      unit:
+        srcs: ["src/test"]
+        deps:
+          - /query

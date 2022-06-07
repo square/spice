@@ -1,0 +1,5 @@
+---
+name: a
+variants:
+  debug:
+  release:

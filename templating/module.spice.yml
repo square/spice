@@ -1,0 +1,8 @@
+name: "spice-templating"
+tools: ["kotlin"]
+variants:
+  main:
+    deps:
+      - "/model"
+      - "/core"
+

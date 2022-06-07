@@ -1,0 +1,13 @@
+---
+name: "cyclic"
+
+definitions:
+  namespace: "spice.test.example.cyclic"
+  tools: ["kotlin"]
+  variants:
+    main:
+      srcs: ["src/main"]
+
+declared_tools: # Tools declared and available to projects in the workspace
+  - name: kotlin
+

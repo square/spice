@@ -1,0 +1,19 @@
+---
+name: "basic"
+
+definitions:
+  namespace: "spice.test.example.basic"
+  tools: ["kotlin"]
+  variants:
+    debug:
+      srcs: ["src/main", "src/debug"]
+      tests:
+        unit:
+          srcs: ["src/test"]
+    release:
+      srcs: ["src/main", "src/release"]
+
+
+declared_tools: # Tools declared and available to projects in the workspace
+  - name: kotlin
+

@@ -1,0 +1,12 @@
+---
+name: d
+variants:
+  foo:
+    srcs: ["src/main", "src/gen"]
+    deps:
+      - /c
+    tests:
+      unit:
+        srcs: ["src/test"]
+        deps:
+          - /d

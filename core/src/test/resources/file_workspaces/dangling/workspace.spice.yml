@@ -1,0 +1,13 @@
+---
+name: "dangling"
+
+definitions:
+  namespace: "spice.test.example.basic"
+  tools: ["kotlin"]
+  variants:
+    main:
+      srcs: ["src/main", "src/debug"]
+
+declared_tools: # Tools declared and available to projects in the workspace
+  - name: kotlin
+

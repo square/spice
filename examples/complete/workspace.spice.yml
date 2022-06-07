@@ -1,0 +1,59 @@
+--- # Root workspace of the overall Spice project.
+name: "spice"
+
+# project attributes shared by all projects in this group
+definitions:
+  # A logical group, typically a maven-style groupId providing a namespace context within which
+  # all of the projects live.
+  namespace: "com.squareup.spice"
+
+  tools: ["kotlin"]
+  variants:
+    - debug:
+        srcs: ["src/main", "src/debug"]
+        tests:
+          - unit:
+            srcs: ["src/test"]
+            deps:
+              - "maven://com.google.truth"
+              - "maven://junit"
+    - release:
+        srcs: ["src/main", "src/release"]
+        tests:
+          - ui:
+            srcs: ["src/androidTest"]
+    - beta:
+        srcs: ["src/main", "src/release", "src/beta"] # uses release sources AND beta sources
+        tests:
+          - ui:
+            srcs: ["src/androidTest"]
+
+
+# A list of known tags that may be set in any "tags" section. Used for validation/typo-avoidance.
+# These tags are consumed by metadata-aware tools or templates, but may be ignored if irrelevant.
+# Tags will be
+tags: ["exported"]
+
+tools: # Tools declared and available to projects in the workspace
+  - name: kotlin
+
+# TODO: Work out how to have different flavors of artifacts that maybe have different deps.
+# Might be needed, could be a different external workspace? Aliases/Redirects?
+
+external:
+  - name: maven
+    type: maven
+    repositories:
+      - id: central
+        url: http://repo1.maven.org
+    # The artifacts: list can get really long, so allow for loading it separately
+    # TODO: Alternatively, consider using the << referencing system, if that can be made multi-file.
+    # artifact-file: "path/relative/to/workspace/artifacts.spice.yml"
+    artifacts:
+      com.google.truth:truth:1.0:
+        exclude: "foo:bar"
+        include: "bar:foo"
+        deps: "blah:foo" # mutually exclusive to exclude/include
+      junit:junit:4.13:
+
+

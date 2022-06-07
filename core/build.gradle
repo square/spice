@@ -1,0 +1,19 @@
+plugins {
+  // id 'build-tool-convention'
+}
+apply { plugin "kotlin" }
+
+dependencies {
+  implementation project(':model')
+
+  implementation(libs.jackson.annotations)
+  implementation(libs.jackson.databind)
+  implementation(libs.jackson.dataformat.yaml)
+  implementation(libs.jackson.module.kotlin)
+  implementation(libs.kotlinx.coroutines.core)
+  implementation(libs.snakeyaml)
+
+  testImplementation(libs.junit.api)
+  testImplementation(libs.google.truth)
+  testRuntimeOnly(libs.junit.engine)
+}

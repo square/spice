@@ -1,0 +1,12 @@
+plugins {
+  //id 'build-tool-convention'
+}
+apply { plugin "kotlin" }
+
+dependencies {
+  implementation(libs.jackson.annotations)
+
+  testImplementation(libs.junit.api)
+  testImplementation(libs.google.truth)
+  testRuntimeOnly(libs.junit.engine)
+}

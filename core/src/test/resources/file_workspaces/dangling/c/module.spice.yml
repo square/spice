@@ -1,0 +1,6 @@
+---
+name: c
+variants:
+  main:
+    deps:
+      - /b
