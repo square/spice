@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Mount caches
+        uses: actions/cache@v2
+        with:
+          path: |
+            "/home/runner/.cache/bazel"
+            "/home/runner/.m2/repository"
+          key: caches-${{ runner.os }}
+      - name: Install bazelisk
+        run: |
+          curl -LO "https://github.com/bazelbuild/bazelisk/releases/download/v1.4.0/bazelisk-linux-amd64"
+          mkdir -p "${GITHUB_WORKSPACE}/bin/"
+          mv bazelisk-linux-amd64 "${GITHUB_WORKSPACE}/bin/bazel"
+          chmod a+x "${GITHUB_WORKSPACE}/bin/bazel"
+      # TODO: Make this part of hermit
+      - name: Activate Hermit
+        run: . bin/activate-hermit
+      - name: Build
+        run: |
+          "${GITHUB_WORKSPACE}/bin/bazel" build //...
+      - name: Test
+        run: |
+          "${GITHUB_WORKSPACE}/bin/bazel" test //...
