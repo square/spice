@@ -16,15 +16,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Mount caches
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             "/home/runner/.cache/bazel"
             "/home/runner/.m2/repository"
           key: caches-${{ runner.os }}
-      - name: Activate Hermit
-        run: . bin/activate-hermit
-      # TODO: Make bazelisk install part of hermit
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
       - name: Install bazelisk
         run: |
           curl -LO "https://github.com/bazelbuild/bazelisk/releases/download/v1.4.0/bazelisk-linux-amd64"
