@@ -22,15 +22,15 @@ jobs:
             "/home/runner/.cache/bazel"
             "/home/runner/.m2/repository"
           key: caches-${{ runner.os }}
+      - name: Activate Hermit
+        run: . bin/activate-hermit
+      # TODO: Make bazelisk install part of hermit
       - name: Install bazelisk
         run: |
           curl -LO "https://github.com/bazelbuild/bazelisk/releases/download/v1.4.0/bazelisk-linux-amd64"
           mkdir -p "${GITHUB_WORKSPACE}/bin/"
           mv bazelisk-linux-amd64 "${GITHUB_WORKSPACE}/bin/bazel"
           chmod a+x "${GITHUB_WORKSPACE}/bin/bazel"
-      # TODO: Make this part of hermit
-      - name: Activate Hermit
-        run: . bin/activate-hermit
       - name: Build
         run: |
           "${GITHUB_WORKSPACE}/bin/bazel" build //...
