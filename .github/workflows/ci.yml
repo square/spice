@@ -36,7 +36,7 @@ jobs:
           chmod a+x "${GITHUB_WORKSPACE}/bin/bazel"
       - name: Sync Bazel Dependencies
         run: script/ci-sync.sh
-        timeout-minutes: 10
+        timeout-minutes: 30
       - name: Build
         run: |
           "${GITHUB_WORKSPACE}/bin/bazel" build //...
