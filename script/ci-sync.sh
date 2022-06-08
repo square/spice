@@ -1,4 +1,4 @@
-#!bash
+#!/usr/bin/env bash
 
 bazel_bin="${GITHUB_WORKSPACE}/bin/bazel"
 
