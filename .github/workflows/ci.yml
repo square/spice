@@ -35,8 +35,7 @@ jobs:
           mv bazelisk-linux-amd64 "${GITHUB_WORKSPACE}/bin/bazel"
           chmod a+x "${GITHUB_WORKSPACE}/bin/bazel"
       - name: Sync Bazel Dependencies
-        run: |
-          "${GITHUB_WORKSPACE}/scripts/ci-sync.sh"
+        run: scripts/ci-sync.sh
         timeout-minutes: 10
       - name: Build
         run: |
