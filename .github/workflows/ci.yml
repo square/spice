@@ -26,6 +26,8 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
+      - name: "See settings"
+        run: cat /home/runner/.m2/settings.xml
       - name: Install bazelisk
         run: |
           curl -LO "https://github.com/bazelbuild/bazelisk/releases/download/v1.4.0/bazelisk-linux-amd64"
